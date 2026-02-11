@@ -51,10 +51,3 @@ resilience4j:
           - java.lang.IllegalStateException
           - org.springframework.web.client.ResourceAccessException
 
-  timelimiter:
-    instances:
-      studentService:
-        timeoutDuration: 2s
-
-      courseService:
-        timeoutDuration: 2s
