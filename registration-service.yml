@@ -40,10 +40,16 @@ resilience4j:
       studentService:
         maxRetryAttempts: 3
         waitDuration: 1s
+        retryExceptions:
+          - java.lang.IllegalStateException
+          - org.springframework.web.client.ResourceAccessException
 
       courseService:
         maxRetryAttempts: 3
         waitDuration: 1s
+        retryExceptions:
+          - java.lang.IllegalStateException
+          - org.springframework.web.client.ResourceAccessException
 
   timelimiter:
     instances:
