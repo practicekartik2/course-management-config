@@ -25,29 +25,24 @@ resilience4j:
 
   circuitbreaker:
     instances:
-      studentService:
+      student-service:
         failureRateThreshold: 50
         minimumNumberOfCalls: 5
         waitDurationInOpenState: 10s
 
-      courseService:
+      course-service:
         failureRateThreshold: 50
         minimumNumberOfCalls: 5
         waitDurationInOpenState: 10s
 
   retry:
     instances:
-      studentService:
+      student-service:
         maxRetryAttempts: 3
         waitDuration: 1s
-        retryExceptions:
-          - java.lang.IllegalStateException
-          - org.springframework.web.client.ResourceAccessException
 
-      courseService:
+      course-service:
         maxRetryAttempts: 3
         waitDuration: 1s
-        retryExceptions:
-          - java.lang.IllegalStateException
-          - org.springframework.web.client.ResourceAccessException
+
 
