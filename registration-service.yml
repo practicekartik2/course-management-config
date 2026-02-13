@@ -45,4 +45,13 @@ resilience4j:
         maxRetryAttempts: 3
         waitDuration: 1s
 
+  timelimiter:
+    instances:
+      student-service:
+        timeoutDuration: 2s
+        cancelRunningFuture: true
+
+      course-service:
+        timeoutDuration: 2s
+        cancelRunningFuture: true
 
