@@ -36,25 +36,23 @@ resilience4j:
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
 
-  retry:
+ retry:
     instances:
       StudentFeignClientgetStudentint:
         maxRetryAttempts: 3
         waitDuration: 1s
+        retryExceptions:
+          - feign.FeignException$ServiceUnavailable
+          - java.net.ConnectException
+          - java.util.concurrent.TimeoutException
 
       CourseFeignClientgetCourseint:
         maxRetryAttempts: 3
         waitDuration: 1s
-
-  timelimiter:
-    instances:
-      StudentFeignClientgetStudentint:
-        timeoutDuration: 2s
-        cancelRunningFuture: true
-
-      CourseFeignClientgetCourseint:
-        timeoutDuration: 2s
-        cancelRunningFuture: true
+        retryExceptions:
+          - feign.FeignException$ServiceUnavailable
+          - java.net.ConnectException
+          - java.util.concurrent.TimeoutException
         
 management:
   tracing:
