@@ -25,16 +25,16 @@ resilience4j:
   circuitbreaker:
     instances:
       StudentFeignClientgetStudentint:
-        slidingWindowSize: 4
-        minimumNumberOfCalls: 2
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
         failureRateThreshold: 50
-        waitDurationInOpenState: 10s
+        waitDurationInOpenState: 20s
 
       CourseFeignClientgetCourseint:
-        slidingWindowSize: 4
-        minimumNumberOfCalls: 2
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
         failureRateThreshold: 50
-        waitDurationInOpenState: 10s
+        waitDurationInOpenState: 20s
 
   retry:
     instances:
@@ -54,6 +54,19 @@ resilience4j:
           - java.net.ConnectException
           - java.util.concurrent.TimeoutException
 
+  timelimiter:
+    instances:
+      StudentFeignClientgetStudentint:
+        timeoutDuration: 3s
+      CourseFeignClientgetCourseint:
+        timeoutDuration: 3s
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 3000
+        readTimeout: 5000
         
 management:
   tracing:
@@ -67,4 +80,5 @@ management:
 logging:
   level:
     io.github.resilience4j.circuitbreaker: DEBUG
+
 
