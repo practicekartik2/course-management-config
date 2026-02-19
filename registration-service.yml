@@ -16,15 +16,16 @@ spring:
       ddl-auto: update
     show-sql: true
 
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-  cloud:
-    openfeign:
-      circuitbreaker:
-        enabled: true
 
 resilience4j:
   circuitbreaker:
